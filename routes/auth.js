@@ -40,12 +40,12 @@ router.post('/signup',(req,res)=>{
     
             user.save()
             .then(user=>{
-                transporter.sendMail({
-                    to:user.email,
-                    from:"no-reply@insta.com",
-                    subject:"signup success",
-                    html:"<h1>welcome to instagram</h1>"
-                })
+                // transporter.sendMail({
+                //     to:user.email,
+                //     from:"no-reply@insta.com",
+                //     subject:"signup success",
+                //     html:"<h1>welcome to instagram</h1>"
+                // })
                 res.json({message:"saved successfully"})
             })
             .catch(err=>{
