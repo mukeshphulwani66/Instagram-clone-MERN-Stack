@@ -35,7 +35,32 @@ const CretePost = ()=>{
         })
     }
     },[url])
-  
+   
+   //Checks for All the values of Input Boxes 
+   const postDetails = ()=>{
+    fetch("/createpost",{
+        method:"post",
+        headers:{
+            "Content-Type":"application/json",
+            "Authorization":"Bearer "+localStorage.getItem("jwt")
+        },
+        body:JSON.stringify({
+            title,
+            body,
+            pic:url
+        })
+    }).then(res=>res.json())
+    .then(data=>{    
+        if(data.error){
+            M.toast({html: data.error,classes:"#c62828 red darken-3"});
+            return
+            //if all fields are not present then it will exit
+          }
+    }).catch(err=>{
+        console.log(err)
+    }) 
+    //Checking of Input Boxes finished
+   
    const postDetails = ()=>{
        const data = new FormData()
        data.append("file",image)
